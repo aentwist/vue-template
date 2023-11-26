@@ -1,0 +1,103 @@
+# Use basic GitLab security measures
+# See https://docs.gitlab.com/ee/user/application_security/secure_your_application.html
+include:
+  - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+# Pin majors for included GitLab tools where appropriate to protect against
+# breaking changes
+variables:
+  SECRETS_ANALYZER_VERSION: 5
+
+default:
+  tags:
+    - glexecutor-docker
+  # Should match the alpine version for node, for consistency
+  image: alpine:3.18@sha256:eece025e432126ce23f223450a0326fbebde39cdf496a85d8c016293fc851978
+
+.npm:
+  # The CI node version should be in sync with the project node version in
+  # .tool-versions
+  image: node:20.9.0-alpine3.18@sha256:8e015de364a2eb2ed7c52a558e9f716dcb615560ffd132234087c10ccc1f2c63
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+    policy: pull
+  before_script: npm ci --cache .npm --prefer-offline
+
+# Create the cache before the other jobs run so they don't all try to create it
+install:
+  extends: .npm
+  stage: .pre
+  cache:
+    policy: pull-push
+  script: echo cache created
+
+build:
+  extends: .npm
+  needs:
+    - install
+  stage: build
+  script: npm run build
+  artifacts:
+    paths:
+      - dist
+    # Pipelines should be quick
+    expire_in: 15 minutes
+
+lint:code:
+  extends: .npm
+  needs:
+    - install
+  stage: test
+  script: npm run lint:code
+
+lint:commits:
+  extends: .npm
+  needs:
+    - install
+  stage: test
+  script: npx commitlint --from=$CI_MERGE_REQUEST_DIFF_BASE_SHA
+
+test:unit:
+  extends: .npm
+  needs:
+    - install
+  stage: test
+  script: npm run test:unit -- --coverage
+  # See https://docs.gitlab.com/ee/ci/testing/code_coverage.html#add-test-coverage-results-using-coverage-keyword
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+
+secret_detection:
+  needs: []
+
+dependency_scanning:
+  needs: []
+
+# See https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/gitlab-ci.md
+release:
+  extends: .npm
+  stage: deploy
+  dependencies:
+    - build
+  script: |
+    apk update
+    apk add git
+    npx semantic-release
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# TODO
+# rsync dist/ to machine with web server OR
+# upload dist/ to S3 OR
+# use a managed platform (Cloudflare Pages, AWS Amplify, Netlify, etc.)
+deploy:
+  stage: deploy
+  dependencies:
+    - build
+  script: echo not implemented
+  rules:
+    - when: never
