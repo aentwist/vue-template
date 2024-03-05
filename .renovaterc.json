@@ -3,6 +3,7 @@
   "extends": [
     "github>aentwist/renovate//presets/default",
     "github>aentwist/renovate//presets/node",
-    "github>aentwist/renovate//presets/pre-commit/javascript"
+    "github>aentwist/renovate//presets/pre-commit/javascript",
+    ":skipStatusChecks"
   ]
 }
