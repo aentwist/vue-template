@@ -1,7 +1,7 @@
 {
   "[javascript][typescript][vue]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "always"
     }
   },
   "[html][css][json][jsonc][yaml][markdown]": {
