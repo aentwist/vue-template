@@ -1,9 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>aentwist/renovate",
-    "github>aentwist/renovate:vue",
-    ":enablePreCommit",
-    "github>aentwist/renovate:pre-commit-vue"
+    "github>aentwist/renovate//presets/default",
+    "github>aentwist/renovate//presets/node",
+    "github>aentwist/renovate//presets/pre-commit/javascript"
   ]
 }
