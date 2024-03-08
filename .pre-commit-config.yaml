@@ -8,9 +8,13 @@ repos:
         files: \.(?:vue|[jt]sx?|[cm][jt]s)$
         types: [file]
         additional_dependencies:
+          # renovate: datasource=npm
           - eslint@8.56.0
+          # renovate: datasource=npm
           - eslint-plugin-vue@9.22.0
+          # renovate: datasource=npm
           - "@vue/eslint-config-typescript@12.0.0"
+          # renovate: datasource=npm
           - "@vue/eslint-config-prettier@9.0.0"
 
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -25,5 +29,7 @@ repos:
       - id: commitlint
         stages: [commit-msg]
         additional_dependencies:
+          # renovate: datasource=npm
           - commitlint@19.0.3
+          # renovate: datasource=npm
           - "@commitlint/config-conventional@19.0.3"
