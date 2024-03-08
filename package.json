@@ -24,7 +24,7 @@
     "vuetify": "^3.5.8"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "19.0.0",
+    "@commitlint/config-conventional": "19.0.3",
     "@mdi/js": "^7.3.67",
     "@rushstack/eslint-patch": "^1.1.4",
     "@semantic-release/commit-analyzer": "^11.0.0",
