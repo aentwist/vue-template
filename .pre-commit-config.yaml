@@ -8,9 +8,9 @@ repos:
         files: \.(?:vue|[jt]sx?|[cm][jt]s)$
         types: [file]
         additional_dependencies:
-          - eslint@8.53.0
-          - eslint-plugin-vue@9.18.0
-          - "@vue/eslint-config-typescript@11.0.3"
+          - eslint@8.56.0
+          - eslint-plugin-vue@9.22.0
+          - "@vue/eslint-config-typescript@12.0.0"
           - "@vue/eslint-config-prettier@8.0.0"
 
   - repo: https://github.com/pre-commit/mirrors-prettier
