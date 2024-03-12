@@ -11,7 +11,7 @@ repos:
           # renovate: datasource=npm
           - eslint@8.56.0
           # renovate: datasource=npm
-          - eslint-plugin-vue@9.22.0
+          - eslint-plugin-vue@9.23.0
           # renovate: datasource=npm
           - "@vue/eslint-config-typescript@12.0.0"
           # renovate: datasource=npm
