@@ -18,7 +18,7 @@ default:
 .npm:
   # The CI node version should be in sync with the project node version in
   # .tool-versions
-  image: node:20.13.0-alpine3.18@sha256:3965ce10e4e6b4f1215d652873e54c6707c3539a2568cca0cc452908075bf19e
+  image: node:20.13.0-alpine3.18@sha256:00e080cf0c3b9f2d96fd30f9288b64aae14a85fa4ca985e0184008292ab93e0b
   cache:
     key:
       files:
