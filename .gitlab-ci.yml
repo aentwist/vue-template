@@ -13,7 +13,7 @@ default:
   tags:
     - glexecutor-docker
   # Should match the alpine version for node, for consistency
-  image: alpine:3.20@sha256:5f48f60d043e6df88720dea5f954dcf507912368cd84bd08703325fdf269724e
+  image: alpine:3.20@sha256:b89d9c93e9ed3597455c90a0b88a8bbb5cb7188438f70953fede212a0c4394e0
 
 .npm:
   # The CI node version should be in sync with the project node version in
