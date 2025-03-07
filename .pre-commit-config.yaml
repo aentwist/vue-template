@@ -30,6 +30,6 @@ repos:
         stages: [commit-msg]
         additional_dependencies:
           # renovate: datasource=npm
-          - commitlint@19.7.1
+          - commitlint@19.8.0
           # renovate: datasource=npm
           - "@commitlint/config-conventional@19.8.0"
