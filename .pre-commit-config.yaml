@@ -9,7 +9,7 @@ repos:
         types: [file]
         additional_dependencies:
           # renovate: datasource=npm
-          - eslint@8.56.0
+          - eslint@8.57.1
           # renovate: datasource=npm
           - eslint-plugin-vue@9.33.0
           # renovate: datasource=npm
